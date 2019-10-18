@@ -30,9 +30,9 @@
 ```
 2. 创建vue文件  
 * 创建文件AnalysisContent.vue，输入vue触发user snippets
-![usersnippets](D59834B1A5474DE2B19A5CB625BAC46F)
+![usersnippets](https://github.com/0ragdoll0/share/blob/master/pics/20191012/1.png)
 * 使用user snippets（主要功能为根据文件名动态生成script和style的src）
-![usersnippets1](836772E43A9944A39226422848AC0756)
+![usersnippets1](https://github.com/0ragdoll0/share/blob/master/pics/20191012/2.png)
 
 ### 局限：
 * **不适用于生成复杂文件模板**   
@@ -45,18 +45,18 @@
 2. 构成
    * index.ts（主要功能代码）
    * template文件夹（模板文件存放）
-   * 如图：![folder](97B08A26B76245DC8A2FEDCC43EAA8BF)
+   * 如图：![folder](https://github.com/0ragdoll0/share/blob/master/pics/20191012/3.png)
 3. 使用方法：在需要生成组件的路径，运行componentCreate/index.ts，输入组件名称
 4. 修改模板方法：修改componentCreate/template中的文件即可
 5. 获取地址：[componentCreate](https://github.com/0ragdoll0/tool.git)
 6. 实例：
-    * 路径转到项目的components文件夹，运行componentCreate/index.ts![1](0D2424A15C8F4D6DA7C3C0B8CCEDD88C)
-    * 输入组件名，创建组件文件夹![2](5917EB3A8CD345668D71D0A726089684)
-    * 生成模板文件![3](36B5EC9A3BBC4F0FA92334F9DE31E409)![4](20D432C99141469B9BBEDBE18C34C67B)![5](4A4B74D964A04A6C8C88F621D78405CE)![6](FA75F3F47083465F92AC551A787CF48D)
+    * 路径转到项目的components文件夹，运行componentCreate/index.ts![1](https://github.com/0ragdoll0/share/blob/master/pics/20191012/4.png)
+    * 输入组件名，创建组件文件夹![2](https://github.com/0ragdoll0/share/blob/master/pics/20191012/5.png)
+    * 生成模板文件![3](https://github.com/0ragdoll0/share/blob/master/pics/20191012/6.png)![4](https://github.com/0ragdoll0/share/blob/master/pics/20191012/7.png)![5](https://github.com/0ragdoll0/share/blob/master/pics/20191012/8.png)![6](https://github.com/0ragdoll0/share/blob/master/pics/20191012/9.png)
     
 ## elementui中的el-scrollbar
 ==el-scrollbar==在elementui的一些组件以及其官网中被使用，但在elementui官方文档中未提及。
-如图：![el-scroll1](57DF2487127541DEAB821942D6165D81)![el-scroll](89EA00E48E4E439E857A56F23A0574D7)
+如图：![el-scroll1](https://github.com/0ragdoll0/share/blob/master/pics/20191012/10.png)![el-scroll](https://github.com/0ragdoll0/share/blob/master/pics/20191012/11.png)
 
 * **Scrollbar组件**  
 Scrollbar组件可在element-ui的packages中找到，组件具体内容可在源码中查看：
@@ -77,14 +77,14 @@ props: {
     }
   },
 ```
-![el-scroll4](65663BD720B64A36BD2A3DA62500C699)
+![el-scroll4](https://github.com/0ragdoll0/share/blob/master/pics/20191012/12.png)
 
 * **Scrollbar组件使用方法**  
 1. 将需要添加滚动条的内容放在el-scrollbar组件标签内
 2. 设置wrap-class对应样式的max-height
 3. 实例：
 链接：[el-scrollbar使用实例](https://codepen.io/0ragdoll0/pen/RwwraJe)
-![el-scroll5](6A77F37DF17E4EBFB5FED8B7D0A244DE)
+![el-scroll5](https://github.com/0ragdoll0/share/blob/master/pics/20191012/13.png)
 4. 注意：不要改变wrap-class对应样式的padding。
 
 
