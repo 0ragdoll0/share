@@ -28,7 +28,7 @@
 
 ## 打印页面模型
 页面盒子模型由外边距 (margin)、边框 (border)、内边距 (padding) 和 内容区域 (content) 构成：
-![pagemodel](EE8C20A543924371BEBE1087A6A3B3D6)
+![pagemodel](https://github.com/0ragdoll0/share/blob/master/pics/pagebox.png)
 
 ### 页面模型的应用
 #### 1.调整打印的页边距
