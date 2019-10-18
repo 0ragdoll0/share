@@ -1,0 +1,186 @@
+## 打印接口
+* `window.print()`
+* `document.execCommand('print')`
+
+## 打印样式
+1. 使用`@media print`
+```
+@media print {
+  body {
+      color: red;
+  }
+}
+```
+2. 内联样式使用media属性
+```
+<style type="text/css" media="print">
+    body {
+      color: red;
+    }
+</style>
+
+```
+3. 使用`@import`
+```
+// css文件
+@import url("print.css") print;
+```
+
+## 打印页面模型
+页面盒子模型由外边距 (margin)、边框 (border)、内边距 (padding) 和 内容区域 (content) 构成：
+![pagemodel](EE8C20A543924371BEBE1087A6A3B3D6)
+
+### 页面模型的应用
+#### 1.调整打印的页边距
+* 默认边距（20mm左右
+![marginbefore1](CC5BA449885145E1ACDBED94E579ADC2)  
+
+* 修改边距（3cm）
+```
+@media print {
+  @page {
+    margin: 3cm;
+  }
+}
+```
+![margin3cm](83890366D5334F0CB744C76408153ABF)
+
+#### 2.删除默认页眉/页脚
+由于页眉页脚分布在页面模型的margin处，将margin设置为0，可删除（不显示）默认的页眉页脚。
+```
+@media print {
+  @page {
+    margin: 0;
+  }
+  body {
+    margin: 1cm;
+  }
+}
+```
+![noheader](523703E82AA049FF82A30EB8B7EB0504)
+#### 3.自定义页眉/页脚
+在删除默认页眉/页脚的基础上，在body中写自定义的页眉页脚样式。
+```
+// vue文件
+<template>
+  <div id="app">
+    <button
+      class="print-btn"
+      @click="onPrint"
+    >打印</button>
+    <div class="header">自定义页眉</div>
+    <div class="footer">自定义页脚</div>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view />
+  </div>
+</template>
+```
+```
+// css文件
+@media print {
+  @page {
+    margin: 0;
+  }
+  body {
+    margin: 1cm;
+    .header {
+      display: block;
+      position: fixed;
+      top: 20px;
+    }
+    .footer {
+      display: block;
+      position: fixed;
+      bottom: 20px;
+    }
+  }
+}
+.header {
+  display: none;
+  @media print {
+    display: block;
+  }
+}
+.footer {
+  display: none;
+  @media print {
+    display: block;
+  }
+}
+```
+![header](48F9B8988DFB42638A00C2D88808D64E)
+
+## 打印分页
+### 插入分页
+使用`break-after: page`样式
+```
+// vue
+<div class="home">
+    <img
+      alt="Vue logo"
+      src="../assets/logo.png"
+    >
+    <HelloWorld
+      msg="第一部分"
+      class="page-break-point"
+    />
+    <img
+      alt="Vue logo"
+      src="../assets/logo.png"
+      class="add-margin"
+    >
+    <HelloWorld msg="第二部分" />
+  </div>
+```
+```
+// css
+.page-break-point {
+  break-after: page;
+}
+```
+![pagebreak](C8ED9F1CEFB94D17B5C1E5E6A08F97A1)
+
+### 避免在图片/表格处分页
+  
+* 图片或表格等在分页处分割问题
+![notavoid](FF696EF1E59D4EDBB08BDFCCD87D18D7)
+* 使用`break-inside: avoid`样式
+```
+// css
+table {
+  break-inside: avoid;
+}
+```
+![avoid](1ED400B75B584B2EA186430002C8A9CE)
+
+## 批改项目WEB打印相关
+### 1. 在当前页面打印or跳转到新页面打印？
+1. 在当前页面打印  
+* 适用范围：打印内容和当前页面样式，结构等差异不大的情况。
+* 主要工作：使用第二节中的几种方式对打印页面进行样式调整。  
+2. 跳转到新页面打印  
+* 适用范围：打印内容和当前页面样式，结构等差异较大的情况。
+* 主要工作：构建新的页面（批改项目的printAnalysis以及printStudentReport）。
+
+3. 批改项目选择在新页面打印的原因
+* 学生报告和批改详情页面的样式有较大的差异，例如导航栏，选项卡的展开状态等。
+* 学生报告页面的错题与变式题在web上中需下拉加载更多，而打印时需要全部显示。
+
+### 2.学生报告中图表较多，需要使用break-inside: avoid避免分页时割裂图表。
+
+### 3.需要打印的图片需添加max-width:100%以避免图片宽度超出打印纸宽度。
+
+### 4.关于echarts的打印
+* echarts图表的宽度不可以自适应变化，在web中显示需要监听window的resize事件后，手动对其进行resize。
+* 打印时页面宽度发生改变，而echarts图表的宽度不可以自适应变化，因此在printAnalysis以及printStudentReport页面将echarts图表转换成图片，使其可随页面宽度变化，避免宽度超出打印页面。
+
+
+## 参考链接：  
+[Print —— 被埋没的Media Type](https://cdc.tencent.com/2014/08/19/print-%E8%A2%AB%E5%9F%8B%E6%B2%A1%E7%9A%84media-type/)  
+[Web打印探秘](https://juejin.im/post/5c90d8085188252db75694dc)  
+[CSS/break-inside](https://developer.mozilla.org/zh-CN/docs/Web/CSS/break-inside)  
+[window.print—— 浏览器打印扫盲](https://juejin.im/post/5b371a8a6fb9a00e5326f06c)
+
