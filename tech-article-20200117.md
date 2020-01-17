@@ -68,11 +68,11 @@ if (!error || !error.response) {
 App.comp.ts中对请求异常Error的处理后，error.isHandled应该置为true，实际调用处应直接return，不应出现二次提示。但实际情况是出现了二次提示。
 
 **2. 实际返回的Error是什么？**
-通过观察发现，之前使用js+vuex写的页面不会出现二次提示。对比一下使用vuex和vuex-module-decorators时，实际调用Action方法时，返回的Error及其error.isHandled
-vuex：
-![2](https://github.com/0ragdoll0/share/blob/master/pics/20200117/2.png)
-vuex-module-decorators：
-![3](https://github.com/0ragdoll0/share/blob/master/pics/20200117/3.png)
+通过观察发现，之前使用js+vuex写的页面不会出现二次提示。对比一下使用vuex和vuex-module-decorators时，实际调用Action方法时，返回的Error及其error.isHandled      
+**vuex:**
+![2](https://github.com/0ragdoll0/share/blob/master/pics/20200117/2.png)         
+**vuex-module-decorators：**          
+![3](https://github.com/0ragdoll0/share/blob/master/pics/20200117/3.png)               
 
 可见vuex-module-decorators返回的error.isHandled为undefined。因此会出现二次提示。
 
